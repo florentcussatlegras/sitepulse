@@ -4,7 +4,9 @@ FROM php:8.4-apache
 # Installe les extensions PHP nécessaires
 RUN apt-get update && apt-get install -y \
     libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql pgsql
+    zip \
+    unzip \
+    && docker-php-ext-install pdo pdo_pgsql pgsql zip
 
 # Installe Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -22,7 +24,7 @@ RUN a2enmod rewrite
 RUN sed -i 's/Listen 80/Listen $PORT/' /etc/apache2/ports.conf
 RUN sed -i 's/80/$PORT/g' /etc/apache2/sites-available/000-default.conf
 
-# Expose le port Apache (en utilisant la variable d'environnement)
+# Expose le port Apache
 EXPOSE 80
 
 # Démarre Apache
