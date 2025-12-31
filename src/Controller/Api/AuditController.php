@@ -15,27 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/api/audits')]
 class AuditController extends AbstractController
 {
-    #[Route('/{id}', name: 'api_audit_show', methods: ['GET'])]
-    public function show(int $id, AuditRepository $auditRepository): JsonResponse
-    {
-        $audit = $auditRepository->find($id);
-
-        if (!$audit) {
-            return $this->json(['error' => 'Audit non trouvé'], 404);
-        }
-
-        return $this->json([
-            'id' => $audit->getId(),
-            'url' => $audit->getUrl(),
-            'performance' => $audit->getPerformance(),
-            'seo' => $audit->getSeo(),
-            'accessibility' => $audit->getAccessibility(),
-            'bestPractices' => $audit->getBestPractices(),
-            'recommendations' => $audit->getRecommendations(), // array de strings
-        ]);
-    }
-
-    #[Route('/', name: 'api_audit_create', methods: ['POST'])]
+    #[Route('', name: 'api_audit_create', methods: ['POST'])]
     public function create(Request $request, EntityManagerInterface $em): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
@@ -53,6 +33,26 @@ class AuditController extends AbstractController
 
         return $this->json([
             'id' => $audit->getId()
+        ]);
+    }
+
+    #[Route('/{id}', name: 'api_audit_show', methods: ['GET'])]
+    public function show(int $id, AuditRepository $auditRepository): JsonResponse
+    {
+        $audit = $auditRepository->find($id);
+
+        if (!$audit) {
+            return $this->json(['error' => 'Audit non trouvé'], 404);
+        }
+
+        return $this->json([
+            'id' => $audit->getId(),
+            'url' => $audit->getUrl(),
+            'performance' => $audit->getPerformance(),
+            'seo' => $audit->getSeo(),
+            'accessibility' => $audit->getAccessibility(),
+            'bestPractices' => $audit->getBestPractices(),
+            'recommendations' => $audit->getRecommendations(), // array de strings
         ]);
     }
 }
