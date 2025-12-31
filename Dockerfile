@@ -6,8 +6,14 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && docker-php-ext-install pdo pdo_pgsql pgsql
 
+# Installe Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Copie les fichiers de ton projet
 COPY . /var/www/html/
+
+# Installe les dépendances PHP de ton projet
+RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
 
 # Active Apache mod_rewrite pour Symfony
 RUN a2enmod rewrite
