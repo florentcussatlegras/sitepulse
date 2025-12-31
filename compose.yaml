@@ -7,7 +7,6 @@ services:
       dockerfile: Dockerfile
     container_name: symfony_app
     environment:
-      - DATABASE_URL=postgresql://postgres:vTrDLmISQPajxoWRTiWPOykaMDbqGgzl@caboose.proxy.rlwy.net:14363/railway
       - APP_ENV=prod
       - PORT=8080   # Optionnel si tu veux explicitement définir le port pour ton app
     volumes:

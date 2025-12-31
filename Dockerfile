@@ -24,8 +24,8 @@ RUN cd /var/www/html && composer install --no-dev --optimize-autoloader
 # Active Apache mod_rewrite pour Symfony
 RUN a2enmod rewrite
 
-# Transmettre les variables d'environnement au conteneur Apache
-ENV DATABASE_URL=${DATABASE_URL}
+# Ajoute un script pour injecter les variables d'environnement dans Apache
+RUN echo "export DATABASE_URL=${DATABASE_URL}" >> /etc/apache2/envvars
 
 # Modifie la configuration d'Apache pour écouter sur toutes les interfaces
 RUN sed -i 's/Listen 80/Listen $PORT/' /etc/apache2/ports.conf
