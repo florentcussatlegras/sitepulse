@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/var/www/html
     ports:
-      - "80"
+      - "$PORT:$PORT"  # Utilisation du port dynamique de Railway
     networks:
       - app_network
 
