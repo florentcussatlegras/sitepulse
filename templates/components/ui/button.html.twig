@@ -1,0 +1,11 @@
+{# templates/components/ui/button.html.twig #}
+{% set variants = {
+    'primary': 'bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500',
+    'outline': 'bg-transparent border border-neutral-300 text-neutral-900 hover:bg-neutral-50 focus:ring-indigo-500',
+    'ghost': 'bg-transparent text-neutral-900 hover:bg-neutral-50 focus:ring-indigo-500',
+    'danger': 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500'
+} %}
+
+<button type="{{ type|default('button') }}" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 {{ variants[variant|default('primary')] }} {{ class|default('') }}">
+    {{ label|raw }}
+</button>
