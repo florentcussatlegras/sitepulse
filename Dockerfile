@@ -4,7 +4,7 @@ FROM php:8.4-apache
 # Installe les extensions PHP nécessaires et les dépendances système
 RUN apt-get update && apt-get install -y \
     libpq-dev \
-    libzip-dev \ 
+    libzip-dev \
     zip \
     unzip \
     && docker-php-ext-install pdo pdo_pgsql pgsql zip
@@ -27,6 +27,11 @@ RUN sed -i 's/80/$PORT/g' /etc/apache2/sites-available/000-default.conf
 
 # Expose le port Apache
 EXPOSE 80
+
+# Script d'entrée pour injecter DATABASE_URL dans Apache
+COPY ./apache/envvars.sh /etc/apache2/envvars.sh
+RUN chmod +x /etc/apache2/envvars.sh
+RUN echo "source /etc/apache2/envvars.sh" >> /etc/apache2/envvars
 
 # Démarre Apache
 CMD ["apache2-foreground"]
