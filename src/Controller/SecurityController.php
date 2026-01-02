@@ -42,7 +42,7 @@ class SecurityController extends AbstractController
         return $this->render('security/register.html.twig');
     }
 
-    #[Route('/login', name: 'app_login', schemes: ['https'])]
+    #[Route('/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
