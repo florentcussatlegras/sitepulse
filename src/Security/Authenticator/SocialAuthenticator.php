@@ -34,7 +34,7 @@ class SocialAuthenticator extends AbstractAuthenticator
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?RedirectResponse
     {
         return new RedirectResponse(
-            $this->urlGenerator->generate('app_homepage')
+            $this->urlGenerator->generate('app_home')
         );
     }
 
