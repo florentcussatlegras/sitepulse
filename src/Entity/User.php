@@ -44,6 +44,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: "string", length: 64, nullable: true)]
     private ?string $resetPasswordToken = null;
 
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private $googleId;
+
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private $githubId;
+
     #[ORM\Column(type: "datetime", nullable: true)]
     private ?\DateTimeInterface $resetPasswordExpiresAt = null;
 
@@ -198,6 +204,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $audit->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGoogleId(): ?string
+    {
+        return $this->googleId;
+    }
+
+    public function setGoogleId(?string $googleId): static
+    {
+        $this->googleId = $googleId;
+
+        return $this;
+    }
+
+    public function getGithubId(): ?string
+    {
+        return $this->githubId;
+    }
+
+    public function setGithubId(?string $githubId): static
+    {
+        $this->githubId = $githubId;
 
         return $this;
     }

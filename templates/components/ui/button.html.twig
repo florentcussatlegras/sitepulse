@@ -8,20 +8,40 @@
 
 {% set iconPosition = iconPosition|default('left') %}
 
-<button type="{{ type|default('button') }}" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 {{ variants[variant|default('primary')] }} {{ class|default('') }}">
-    {# Icône à gauche #}
-    {% if icon is defined and iconPosition == 'left' %}
-        <span class="inline-flex items-center">
-            {{ icon|raw }}
-        </span>
-    {% endif %}
+{% if href is defined %}
+    <a href="{{ href }}" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 {{ variants[variant|default('primary')] }} {{ class|default('') }}">
+        {# Icône à gauche #}
+        {% if icon is defined and iconPosition == 'left' %}
+            <span class="inline-flex items-center">
+                {{ icon|raw }}
+            </span>
+        {% endif %}
 
-    <span>{{ label|raw }}</span>
+        <span>{{ label|raw }}</span>
 
-    {# Icône à droite #}
-    {% if icon is defined and iconPosition == 'right' %}
-        <span class="inline-flex items-center">
-            {{ icon|raw }}
-        </span>
-    {% endif %}
-</button>
+        {# Icône à droite #}
+        {% if icon is defined and iconPosition == 'right' %}
+            <span class="inline-flex items-center">
+                {{ icon|raw }}
+            </span>
+        {% endif %}
+    </a>
+{% else %}
+    <button type="{{ type|default('button') }}" class="inline-flex items-center gap-2 rounded-xl px-4 py-2 font-semibold transition focus:outline-none focus:ring-2 {{ variants[variant|default('primary')] }} {{ class|default('') }}">
+        {# Icône à gauche #}
+        {% if icon is defined and iconPosition == 'left' %}
+            <span class="inline-flex items-center">
+                {{ icon|raw }}
+            </span>
+        {% endif %}
+
+        <span>{{ label|raw }}</span>
+
+        {# Icône à droite #}
+        {% if icon is defined and iconPosition == 'right' %}
+            <span class="inline-flex items-center">
+                {{ icon|raw }}
+            </span>
+        {% endif %}
+    </button>
+{% endif %}
