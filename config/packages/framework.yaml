@@ -22,5 +22,5 @@ when@prod:
         #     - x-forwarded-proto
         #     - x-forwarded-port
         #     - x-forwarded-host
-        router: 
-            default_uri: 'https://sitepulse-production.up.railway.app'
+        # router: 
+        #     default_uri: 'https://sitepulse-production.up.railway.app'
