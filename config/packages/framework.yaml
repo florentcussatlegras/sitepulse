@@ -16,11 +16,11 @@ when@test:
 
 when@prod:
     framework:
-        trusted_proxies: '%env(TRUSTED_PROXIES)%'
-        trusted_headers:
-            - x-forwarded-for
-            - x-forwarded-proto
-            - x-forwarded-port
-            - x-forwarded-host
+        # trusted_proxies: '%env(TRUSTED_PROXIES)%'
+        # trusted_headers:
+        #     - x-forwarded-for
+        #     - x-forwarded-proto
+        #     - x-forwarded-port
+        #     - x-forwarded-host
         router: 
             default_uri: 'https://sitepulse-production.up.railway.app'
