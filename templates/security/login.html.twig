@@ -15,7 +15,7 @@
                 ' ~ include("components/ui/button.html.twig", {
                     label: "Continuer avec Google",
                     href: path("app_home"),
-                    variant: "secondary",
+                    variant: "outline",
                     class: "w-full flex justify-center items-center gap-2 border border-neutral-300",
                     icon: '
                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" class="w-5 h-5">
@@ -25,7 +25,7 @@
                 ' ~ include("components/ui/button.html.twig", {
                     label: "Continuer avec GitHub",
                     href: path("app_home"),
-                    variant: "secondary",
+                    variant: "outline",
                     class: "w-full flex justify-center items-center gap-2 border border-neutral-300",
                     icon: '
                         <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -50,6 +50,12 @@
                     '
                 }) ~ '
 
+            </div>
+
+            <div class="flex items-center my-6">
+                <div class="flex-1 border-t border-gray-200"></div>
+                <span class="px-3 text-gray-400 leading-none">ou</span>
+                <div class="flex-1 border-t border-gray-200"></div>
             </div>
 
             ' ~ (error ? '<div class="alert alert-danger my-6">' ~ error.messageKey|trans(error.messageData, "security") ~ '</div>' : '') ~
